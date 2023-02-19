@@ -1,0 +1,40 @@
+:root {
+  // === FONTS ===
+  --fontTitle: "Montserrat", sans-serif;
+  --fontSubtitle: "Nunito", sans-serif;
+  --fontText: "Source Sans Pro", sans-serif;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--fontText);
+  font-size: 1.6rem;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
