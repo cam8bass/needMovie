@@ -3,6 +3,20 @@
   --fontTitle: "Montserrat", sans-serif;
   --fontSubtitle: "Nunito", sans-serif;
   --fontText: "Source Sans Pro", sans-serif;
+
+  // === COLORS ===
+  --backgroundColor-primary-1: #c4e0e5;
+  --backgroundColor-primary-2: #4ca1af;
+
+  --backgroundColor-secondary-1: rgb(35, 53, 65);
+  --backgroundColor-secondary-2: rgb(31, 27, 41);
+
+  --textColor-1: #bdc3c7;
+  --textColor-2: #2d3436;
+
+  --boxShadow-1: 5px 5px 15px 0px rgba(0, 0, 0, 0.12);
+
+  --colorGold: #d09d4c;
 }
 
 *,
@@ -23,6 +37,7 @@ body {
   box-sizing: border-box;
   font-family: var(--fontText);
   font-size: 1.6rem;
+  background-color: #f6f6f6;
 }
 
 button {
@@ -37,4 +52,8 @@ a {
 
 ul {
   list-style: none;
+}
+
+input {
+  outline: none;
 }

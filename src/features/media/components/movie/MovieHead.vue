@@ -1,0 +1,55 @@
+<script setup lang="ts"></script>
+
+<template>
+  <div class="movie">
+    <h1 class="movie__title">
+      Rejoignez notre communauté de cinéphiles passionnés et découvrez les
+      meilleurs films du moment.
+    </h1>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+@use "@/assets/sass/mixins" as m;
+
+.movie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("@/assets/images/background/background-movie-mob.png");
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+
+  min-height: 25rem;
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+  @include m.md {
+    height: 40rem;
+    background-image: url("@/assets/images/background/background-movie-tab.png");
+    margin-bottom: 4rem;
+  }
+
+  @include m.xl {
+    background-image: url("@/assets/images/background/background-movie-desk.png");
+    margin-bottom: 6rem;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    font-family: var(--fontTitle);
+    color: #fff;
+    max-width: 50rem;
+
+    @include m.md {
+      max-width: 70rem;
+      font-size: 2.5rem;
+    }
+
+    @include m.xl {
+      max-width: 100rem;
+      font-size: 3.5rem;
+    }
+  }
+}
+</style>
