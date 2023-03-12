@@ -2,16 +2,26 @@
 import { ref } from "vue";
 import { useMovieStore } from "../../stores/movieStore";
 import TheLoading from "@/shared/components/TheLoading.vue";
-import MovieNav from "./MovieNav.vue";
-import MovieHead from "./MovieHead.vue";
-import MovieLatest from "./MovieLatest.vue";
-import MovieList from "./MovieList.vue";
+import MovieNav from "./components/MovieNav.vue";
+import MovieHead from "./components/MovieHero.vue";
+import MovieDiscover from "./components/MovieDiscover.vue";
+import MovieList from "./components/MovieList.vue";
 
 const movieStore = useMovieStore();
 
 const btnPopularMovie = ref<boolean>(true);
 const btnTopRatedMovie = ref<boolean>(false);
 const btnUpcomingMovie = ref<boolean>(false);
+
+function updateNavigationMovie(
+  navPopular: boolean,
+  navTopRated: boolean,
+  navUpcoming: boolean
+) {
+  btnPopularMovie.value = navPopular;
+  btnTopRatedMovie.value = navTopRated;
+  btnUpcomingMovie.value = navUpcoming;
+}
 
 function fetchTopRatedMovie(): void {
   movieStore.fetchTopRatedMovie();
@@ -21,36 +31,29 @@ function fetchUpcomingMovie(): void {
   movieStore.fetchUpComingMovie();
 }
 
-function updatePopularMovie(page: number) {
+function updatePopularMovie(): void {
+  const page = movieStore.pages.popularPage++;
   movieStore.fetchPopularMovie(page);
 }
 
-function updateTopRatedMovie(page: number) {
+function updateTopRatedMovie(): void {
+  const page = movieStore.pages.topRatedPage++;
   movieStore.fetchTopRatedMovie(page);
 }
 
-function updateUpcomingMovie(page: number) {
+function updateUpcomingMovie(): void {
+  const page = movieStore.pages.upcomingPage++;
   movieStore.fetchUpComingMovie(page);
-}
-
-function updateNavigationMovie(
-  btnPopular: boolean,
-  btnTopRated: boolean,
-  btnUpcoming: boolean
-) {
-  btnPopularMovie.value = btnPopular;
-  btnTopRatedMovie.value = btnTopRated;
-  btnUpcomingMovie.value = btnUpcoming;
 }
 </script>
 
 <template>
   <TheLoading v-if="movieStore.loading" />
-  <div class="movie" v-if="!movieStore.loading">
+  <div class="content" v-if="!movieStore.loading">
     <MovieHead />
-    <MovieLatest
+    <MovieDiscover
       :btnNav="{ btnPopularMovie, btnTopRatedMovie, btnUpcomingMovie }"
-      :movieStore="{
+      :discover="{
         popularMovie: movieStore.popular.results[0],
         topRatedMovie: movieStore.topRated.results[0],
         upComingMovie: movieStore.UpComing.results[0],
@@ -69,28 +72,11 @@ function updateNavigationMovie(
       :upComingMovies="movieStore.UpComing"
       @updatePopularMovie="updatePopularMovie"
       @updateTopRatedMovie="updateTopRatedMovie"
-      @upddateUpcomingMovie="updateUpcomingMovie"
+      @updateUpcomingMovie="updateUpcomingMovie"
     />
   </div>
-  <RouterView></RouterView>
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/sass/mixins" as m;
-
-.movie {
-  margin-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  @include m.md {
-    margin-bottom: 4rem;
-  }
-
-  @include m.xl {
-    margin-bottom: 6rem;
-  }
-}
+@import "@/assets/sass/page/movie&serie";
 </style>

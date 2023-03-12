@@ -48,39 +48,3 @@ export async function fetchMedia(
     error,
   };
 }
-
-// export async function fetchTrailer(
-//   media: string,
-//   id: number
-// ): Promise<{
-//   loading: Ref<boolean>;
-//   error: Ref<any>;
-//   results: Ref<TrailerInterface | []>;
-// }> {
-//   const loading = ref<boolean>(true);
-//   const error = ref<any>(null);
-//   const results = ref<TrailerInterface | []>([]);
-//   try {
-//     const ajax = await fetch(
-//       `https://api.themoviedb.org/3/${media}/${id}/videos?api_key=${API_KEY}&language=${LANG_FR}`
-//     );
-
-//     if (!ajax.ok) {
-//       throw new Error(ERROR_FETCH_MEDIA);
-//     } else {
-//       const res = await ajax.json();
-//       results.value = res;
-//     }
-//   } catch (e) {
-//     error.value = e;
-//   } finally {
-//     loading.value = false;
-//   }
-//   return {
-//     loading,
-//     error,
-//     results,
-//   };
-// }
-
-// https://api.themoviedb.org/3/${genre/search/discover}/${film/serie}/${id/type}?api_key=${key}&language=${lang}

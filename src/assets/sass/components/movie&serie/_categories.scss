@@ -1,0 +1,38 @@
+@use "@/assets/sass/abstracts/mixins" as m;
+
+.categories {
+  margin: 3rem 0;
+
+  &__btn {
+    font-size: 1.8rem;
+    font-family: var(--fontSubtitle);
+    background-color: transparent;
+    color: var(--textColor-2);
+    transition: color 0.2s;
+
+    &:hover,
+    &:active {
+      color: var(--backgroundColor-primary-2);
+    }
+
+    &:not(:last-of-type) {
+      margin-right: 2rem;
+    }
+    @include m.md {
+      font-size: 2rem;
+      &:not(:last-of-type) {
+        margin-right: 4rem;
+      }
+    }
+
+    @include m.xl {
+      &:not(:last-of-type) {
+        margin-right: 6rem;
+      }
+    }
+
+    &--active {
+      color: var(--backgroundColor-primary-2);
+    }
+  }
+}

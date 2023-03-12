@@ -9,3 +9,5 @@ export type movieStatus =
 export type navCredits = "crew" | "cast";
 
 export type navWallpaper = "backdrops" | "posters";
+
+export type navSeason = "lastSeason" | "allSeason";

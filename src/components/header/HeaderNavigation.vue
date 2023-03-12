@@ -52,7 +52,8 @@ const menu = ref<boolean>(false);
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/sass/mixins" as m;
+@use "@/assets/sass/abstracts/mixins" as m;
+
 .nav {
   align-self: center;
   &__checkbox {

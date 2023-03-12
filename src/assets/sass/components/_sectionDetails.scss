@@ -1,0 +1,57 @@
+@use "@/assets/sass/abstracts/mixins" as m;
+
+.sectionDetails {
+  justify-content: center;
+
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  &:first-of-type {
+    margin-top: 2rem;
+  }
+
+  &:last-child {
+    margin-bottom: 2rem;
+  }
+
+  @include m.md {
+    &:first-of-type {
+      margin-top: 4rem;
+    }
+
+    &:last-child {
+      margin-bottom: 4rem;
+    }
+
+    &:not(:first-child) {
+      margin-top: 2rem;
+    }
+  }
+
+  @include m.lg {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+  @include m.xl {
+    &:first-of-type {
+      margin-top: 6rem;
+    }
+
+    &:last-child {
+      margin-bottom: 6rem;
+    }
+  }
+
+  &__title {
+    align-self: flex-start;
+    font-size: 2rem;
+    font-family: var(--fontSubtitle);
+    color: var(--textColor-2);
+    margin-bottom: 1rem;
+    @include m.md {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+  }
+}

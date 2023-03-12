@@ -1,0 +1,236 @@
+@use "@/assets/sass/abstracts/mixins" as m;
+
+.summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, min-content);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 4rem 0;
+
+  @include m.md {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+  @include m.lg {
+    padding: 4rem 2rem;
+  }
+
+  &__background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-position: center;
+    object-fit: cover;
+    filter: opacity(0.3) blur(5px);
+  }
+
+  &__poster {
+    z-index: 1;
+    position: relative;
+    justify-self: center;
+    width: 50%;
+    padding: 2rem;
+    @include m.xs {
+      max-width: 35rem;
+      min-width: 25rem;
+      width: 80%;
+    }
+
+    @include m.md {
+      width: 80%;
+    }
+
+    @include m.lg {
+      max-width: 35rem;
+      width: 100%;
+    }
+
+    &-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: var(--boxShadow-1);
+    }
+  }
+  &__score {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    width: 7rem;
+    height: 7rem;
+
+    border-radius: 50%;
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(35, 53, 65, 0.8),
+      rgba(31, 27, 41, 0.8)
+    );
+
+    &-number {
+      font-family: var(--fontText);
+      font-size: 2.5rem;
+      color: #fff;
+    }
+  }
+
+  &__title {
+    text-align: center;
+    font-family: var(--fontText);
+    color: var(--textColor-2);
+    font-weight: 400;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+
+    @include m.md {
+      text-align: start;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    @include m.lg {
+      font-size: 3.5rem;
+    }
+
+    &-date {
+      font-size: 1.6rem;
+      font-weight: 300;
+    }
+  }
+
+  &__details {
+    margin: 0 2rem;
+    z-index: 1;
+  }
+
+  &__list {
+    font-family: var(--fontText);
+  }
+
+  &__item {
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-family: var(--fontSubtitle);
+    color: var(--textColor-2);
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__text {
+    font-weight: 300;
+
+    &:last-of-type {
+      max-width: 80rem;
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 1%;
+    right: 4%;
+    z-index: 2;
+    background-color: var(--backgroundColor-secondary-1);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    transition: all 0.2s;
+
+    @include m.xs {
+      top: 1%;
+    }
+
+    @include m.lg {
+      width: 4rem;
+      height: 4rem;
+      top: 3%;
+    }
+    &:hover,
+    &:active {
+      transform: scale(1.1);
+      background-color: rgba(35, 53, 65, 0.8);
+    }
+
+    &-icon {
+      width: 1.5rem;
+      @include m.lg {
+        width: 2rem;
+      }
+    }
+  }
+
+  &__nav {
+    z-index: 2;
+    grid-column: 1/-1;
+    grid-row: 3/-1;
+    @include m.md {
+      margin: 2rem 0;
+    }
+    &-list {
+      display: flex;
+      justify-content: space-around;
+      @include m.lg {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(4, max-content);
+        gap: 6rem;
+      }
+    }
+
+    &-item {
+    }
+
+    &-btn {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+    }
+
+    &-icon {
+      width: 4rem;
+      background-color: var(--backgroundColor-secondary-1);
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+
+      &:hover,
+      &:active {
+        background-color: rgba(35, 53, 65, 0.6);
+      }
+
+      @include m.md {
+        width: 5rem;
+        padding: 1rem;
+      }
+    }
+
+    &-text {
+      margin-top: 0.5rem;
+      font-family: var(--fontSubtitle);
+      font-size: 1.6rem;
+      color: var(--textColor-2);
+      transition: color 0.2s;
+      &:hover,
+      &:active {
+        color: var(--backgroundColor-primary-2);
+      }
+    }
+  }
+}

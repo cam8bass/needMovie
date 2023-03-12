@@ -16,7 +16,8 @@ import headerNavigation from "@/components/header/HeaderNavigation.vue";
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/sass/mixins" as m;
+@use "@/assets/sass/abstracts/mixins" as m;
+
 .header {
   display: grid;
   grid-template-columns: min-content 1fr;

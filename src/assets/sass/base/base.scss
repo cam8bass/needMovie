@@ -1,0 +1,63 @@
+:root {
+  // === FONTS ===
+  --fontTitle: "Montserrat", sans-serif;
+  --fontSubtitle: "Nunito", sans-serif;
+  --fontText: "Source Sans Pro", sans-serif;
+
+  // === COLORS ===
+  --backgroundColor-primary-1: rgb(196, 224, 229);
+  --backgroundColor-primary-2: #4ca1af;
+
+  --backgroundColor-secondary-1: rgb(35, 53, 65);
+  --backgroundColor-secondary-2: rgb(31, 27, 41);
+
+  --textColor-1: #bdc3c7;
+  --textColor-2: #2d3436;
+
+  --boxShadow-1: 5px 5px 15px 0px rgba(0, 0, 0, 0.12);
+
+
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--fontText);
+  font-size: 1.6rem;
+  background-color: #f6f6f6;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  outline: none;
+}
+
+a.router-link-active {
+  color: var(--backgroundColor-primary-2) !important; // a voir
+}

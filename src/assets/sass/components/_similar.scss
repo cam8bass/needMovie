@@ -1,0 +1,18 @@
+@use "@/assets/sass/abstracts/mixins" as m;
+
+.similar {
+  &__img {
+    border-radius: 10px;
+    box-shadow: var(--boxShadow-1);
+    object-fit: cover;
+    object-position: center;
+
+    &-similar {
+      height: 20rem;
+
+      @include m.md {
+        height: 30rem;
+      }
+    }
+  }
+}

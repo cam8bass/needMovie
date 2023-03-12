@@ -1,0 +1,49 @@
+@use "@/assets/sass/abstracts/mixins" as m;
+
+.landscapeList {
+  display: flex;
+  width: 90vw;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-bottom: 1rem;
+  @include m.md {
+    padding-bottom: 2rem;
+  }
+
+  &__item {
+    justify-self: center;
+
+    &:not(:last-of-type) {
+      margin-right: 1rem;
+    }
+
+    @include m.md {
+      &:not(:last-of-type) {
+        margin-right: 2rem;
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__name {
+    text-align: center;
+    align-self: center;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+    font-family: var(--fontText);
+    color: var(--textColor-2);
+  }
+
+  &__job {
+    text-align: center;
+    align-self: center;
+    font-size: 1.4rem;
+    color: var(--textColor-1);
+    font-family: var(--fontText);
+    margin-top: 0.5rem;
+  }
+}

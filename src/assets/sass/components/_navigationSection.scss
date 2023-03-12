@@ -1,0 +1,52 @@
+@use "@/assets/sass/abstracts/mixins" as m;
+
+.navigationSection {
+  width: 100%;
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+
+  @include m.md {
+    margin-bottom: 1.5rem;
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    &:not(:last-of-type) {
+      margin-right: 2rem;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    color: var(--textColor-2);
+    font-family: var(--fontText);
+    background-color: transparent;
+    font-size: 2rem;
+    font-family: var(--fontSubtitle);
+    transition: all 0.2s;
+    padding: 0.5rem 0;
+    border-radius: 2rem;
+    transition: all 0.2s;
+    width: max-content;
+
+    @include m.md {
+      &:hover,
+      &:active {
+        padding: 0.5rem 2rem;
+        color: #fff;
+        background-color: rgba(35, 53, 65, 0.95);
+      }
+    }
+
+    @include m.md {
+      font-size: 2.5rem;
+    }
+
+    &--active {
+      color: var(--backgroundColor-primary-2);
+    }
+  }
+}

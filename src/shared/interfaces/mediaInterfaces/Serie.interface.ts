@@ -1,10 +1,10 @@
-import { DEFAULT_MEDIA, type MediaInterface } from "./Media.interface";
+import type { MediaInterface } from "./Media.interface";
 
-export interface SerieInterface {
-  popular: SerieContentInterface;
-  topRated: SerieContentInterface;
-  currentlyAiring: SerieContentInterface;
-}
+// export interface SerieInterface {
+//   popular: SerieContentInterface;
+//   topRated: SerieContentInterface;
+//   currentlyAiring: SerieContentInterface;
+// }
 
 export interface SerieContentInterface extends MediaInterface {
   results: SerieResultsInterface[] | [];
@@ -26,8 +26,8 @@ export interface SerieResultsInterface {
   original_name: string;
 }
 
-export const DEFAULT_SERIES = {
-  popular: { ...DEFAULT_MEDIA },
-  topRated: { ...DEFAULT_MEDIA },
-  currentlyAiring: { ...DEFAULT_MEDIA },
-};
+// export const DEFAULT_SERIES = {
+//   popular: { ...DEFAULT_MEDIA },
+//   topRated: { ...DEFAULT_MEDIA },
+//   currentlyAiring: { ...DEFAULT_MEDIA },
+// };

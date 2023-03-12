@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import HomeSearch from "@/features/media/components/home/homeSearch.vue";
-import HomeNav from "@/features/media/components/home/homeNav.vue";
-import HomeNews from "@/features/media/components/home/homeNews.vue";
-import HomeTools from "@/features/media/components/home/homeTools.vue";
+import HomeSearch from "@/features/media/components/home/components/homeSearch.vue";
+import HomeNav from "@/features/media/components/home/components/homeNav.vue";
+import HomeNews from "@/features/media/components/home/components/homeNews.vue";
+import HomeTools from "@/features/media/components/home/components/homeTools.vue";
 import { useHomeStore } from "../../stores/homeStore";
 import TheLoading from "@/shared/components/TheLoading.vue";
 
@@ -30,7 +30,7 @@ const homeStore = useHomeStore();
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/sass/mixins" as m;
+@use "@/assets/sass/abstracts/mixins" as m;
 .home {
   // a voir
   display: flex;

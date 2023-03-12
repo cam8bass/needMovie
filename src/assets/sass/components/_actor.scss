@@ -1,0 +1,34 @@
+@use "@/assets/sass/abstracts/mixins" as m;
+
+.actor {
+  &__img {
+    border-radius: 10px;
+    box-shadow: var(--boxShadow-1);
+    object-fit: cover;
+    object-position: center;
+    height: 10rem;
+    max-width: 6rem;
+    @include m.md {
+      max-width: 13rem;
+      height: 20rem;
+    }
+  }
+
+  &__btn {
+    background-color: transparent;
+    height: 50%;
+    font-size: 1.6rem;
+    font-family: var(--fontText);
+    color: var(--textColor-2);
+    width: max-content;
+
+    &:hover,
+    &:active {
+      color: var(--backgroundColor-primary-2);
+    }
+
+    @include m.md {
+      font-size: 1.8rem;
+    }
+  }
+}

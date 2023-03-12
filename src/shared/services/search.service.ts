@@ -3,9 +3,13 @@ import type {
   CreditsInterface,
   MovieSimilarInterface,
   MovieSummaryInterface,
+  SerieCreditsInterface,
+  SerieSeasonInterface,
+  SerieSimilarInterface,
   TrailerInterface,
   WallpapperInterface,
 } from "../interfaces";
+import type { SerieSummaryInterface } from "../interfaces/searchSerieInterfaces/serieSummary.interface";
 
 import { ERROR_FETCH_MEDIA } from "../messages";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -23,6 +27,9 @@ export async function fetchDetails(
     | WallpapperInterface
     | MovieSimilarInterface
     | CreditsInterface
+    | SerieSummaryInterface
+    | SerieCreditsInterface
+    | SerieSimilarInterface
     | []
   >;
   loading: Ref<boolean>;
@@ -34,6 +41,9 @@ export async function fetchDetails(
     | WallpapperInterface
     | MovieSimilarInterface
     | CreditsInterface
+    | SerieSummaryInterface
+    | SerieCreditsInterface
+    | SerieSimilarInterface
     | []
   >([]);
   const loading = ref<boolean>(true);
@@ -77,6 +87,43 @@ export async function fetchWallpaper(
   try {
     const ajax = await fetch(
       `${BASE_URL}/${type}/${id}/images?api_key=${API_KEY}`
+    );
+    if (!ajax.ok) {
+      throw new Error(ERROR_FETCH_MEDIA);
+    } else {
+      const res = await ajax.json();
+      results.value = res;
+    }
+  } catch (e) {
+    error.value = e;
+  } finally {
+    loading.value = false;
+  }
+
+  return {
+    results,
+    loading,
+    error,
+  };
+}
+
+export async function fetchSerieSeason(
+  id: string,
+  seasonNumber: number = 1,
+  episodeNumber?: number
+): Promise<{
+  results: Ref<SerieSeasonInterface | []>;
+  loading: Ref<boolean>;
+  error: Ref<any>;
+}> {
+  const results = ref<SerieSeasonInterface | []>([]);
+  const loading = ref<boolean>(true);
+  const error = ref<any>(null);
+  try {
+    const ajax = await fetch(
+      episodeNumber
+        ? `${BASE_URL}/tv/${id}/season/${seasonNumber}/episode/${episodeNumber}?api_key=${API_KEY}&language=${LANG_FR}&region=FR`
+        : `${BASE_URL}/tv/${id}/season/${seasonNumber}?api_key=${API_KEY}&language=${LANG_FR}&region=FR`
     );
     if (!ajax.ok) {
       throw new Error(ERROR_FETCH_MEDIA);

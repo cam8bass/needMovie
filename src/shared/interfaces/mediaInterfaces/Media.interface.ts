@@ -1,5 +1,3 @@
-
-
 export interface MediaInterface {
   dates: {
     maximum: string;

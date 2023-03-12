@@ -1,4 +1,9 @@
-import { DEFAULT_MEDIA, type MovieContentInterface } from "@/shared/interfaces";
+import {
+  DEFAULT_MEDIA,
+  DEFAULT_MOVIE_PAGES,
+  type MovieContentInterface,
+  type MoviePageInterface,
+} from "@/shared/interfaces";
 import { fetchMedia } from "@/shared/services";
 import { defineStore } from "pinia";
 
@@ -9,6 +14,7 @@ interface MovieStore {
   loading: boolean;
   errors: any;
   needRefresh: boolean;
+  pages: MoviePageInterface;
 }
 
 export const useMovieStore = defineStore("movieStore", {
@@ -19,6 +25,7 @@ export const useMovieStore = defineStore("movieStore", {
     loading: true,
     errors: null,
     needRefresh: true,
+    pages: { ...DEFAULT_MOVIE_PAGES },
   }),
   getters: {},
   actions: {

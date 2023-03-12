@@ -13,8 +13,7 @@ import TheMain from "./components/main/TheMain.vue";
 </template>
 
 <style lang="scss">
-@import "@/assets/sass/base.scss";
-@import "@/assets/sass/debug";
+@import "@/assets/sass/base/base.scss";
 
 .container {
   height: 100vh;

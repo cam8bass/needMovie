@@ -1,0 +1,53 @@
+@use "@/assets/sass/abstracts/mixins" as m;
+
+.mediaList {
+  padding: 0 2rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min-content, 15rem));
+  grid-template-rows: auto;
+  justify-content: center;
+  gap: 2rem;
+
+  @include m.md {
+    grid-template-columns: repeat(auto-fill, minmax(min-content, 20rem));
+    gap: 3rem;
+    padding: 0 4rem;
+  }
+
+  &__item {
+    transition: all 0.2s;
+
+    &:hover,
+    &:active {
+      transform: scale(1.1);
+    }
+  }
+
+  &__link {
+    &-img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: var(--boxShadow-1);
+    }
+  }
+
+  &__btn {
+    width: 100%;
+    min-height: 20rem;
+    border-radius: 10px;
+    box-shadow: var(--boxShadow-1);
+    font-size: 2rem;
+    color: #fff;
+    background-color: var(--backgroundColor-primary-2);
+    transition: background-color 0.2s;
+    &:hover,
+    &:active {
+      background-color: var(--backgroundColor-secondary-1);
+    }
+    @include m.md {
+      height: 30rem;
+      font-size: 4rem;
+    }
+  }
+}
