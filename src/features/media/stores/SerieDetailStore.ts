@@ -16,7 +16,6 @@ import {
   type WallpapperPostersInterface,
   type SerieSimilarInterface,
   type SerieSeasonInterface,
-  DEFAULT_SEASON,
 } from "@/shared/interfaces";
 
 import {
@@ -29,7 +28,7 @@ import { ref } from "vue";
 
 interface SerieDetailStore {
   summary: SerieSummaryInterface;
-  seasons: SerieSeasonInterface;
+  seasons: SerieSeasonInterface[] | [];
   credits: SerieCreditsInterface;
   trailer: TrailerInterface;
   wallpapper: WallpapperInterface;
@@ -37,11 +36,12 @@ interface SerieDetailStore {
   loading: boolean;
   errors: any;
   pages: DetailsPagesInterface;
+  needRefresh: boolean;
 }
 export const useSerieDetailStore = defineStore("serieDetailStore", {
   state: (): SerieDetailStore => ({
     summary: { ...DEFAULT_SERIE_SUMMARY },
-    seasons: { ...DEFAULT_SEASON },
+    seasons: [],
     credits: { ...DEFAULT_CREDITS_SERIE },
     pages: { ...DEFAULT_DETAILS_PAGES },
     trailer: { ...DEFAULT_TRAILER },
@@ -49,6 +49,7 @@ export const useSerieDetailStore = defineStore("serieDetailStore", {
     similar: { ...DEFAULT_SERIE_SIMILAR },
     loading: false,
     errors: null,
+    needRefresh: false,
   }),
   getters: {
     getDirector(): SerieCrewInterface[] {
@@ -121,6 +122,14 @@ export const useSerieDetailStore = defineStore("serieDetailStore", {
           return slicedPosters.value;
         }
       },
+
+    getLastSeason() {
+      const lastSeason = this.seasons.find(
+        (el) => el.season_number === this.summary.number_of_seasons
+      ) as SerieSeasonInterface;
+
+      return lastSeason;
+    },
   },
   actions: {
     async fetchSerieSummary(id: string) {
@@ -132,14 +141,62 @@ export const useSerieDetailStore = defineStore("serieDetailStore", {
     },
 
     async fetchLastSerieSeason(id: string, seasonNumber?: number) {
-      this.loading = true;
-      const { results, loading, error } = await fetchSerieSeason(
-        id,
-        seasonNumber
-      );
-      this.loading = loading.value;
-      this.errors = error.value;
-      this.seasons = results.value as SerieSeasonInterface;
+      if (!this.seasons.find((el) => el.season_number == seasonNumber)) {
+        this.needRefresh = true;
+      }
+
+      if (this.needRefresh) {
+        const { results, loading, error } = await fetchSerieSeason(
+          id,
+          seasonNumber
+        );
+        this.loading = loading.value;
+        this.errors = error.value;
+
+        if (Array.isArray(this.seasons)) {
+          const oldSeason = this.seasons.filter(
+            (el) => el.id !== (results.value as SerieSeasonInterface).id
+          );
+
+          this.seasons = [
+            ...oldSeason,
+            results.value,
+          ] as SerieSeasonInterface[];
+          this.needRefresh = false;
+        } else {
+          this.seasons = [results.value] as SerieSeasonInterface[];
+          this.needRefresh = false;
+        }
+      }
+    },
+
+    async fetchSerieSeason(id: string, seasonNumber?: number) {
+      if (!this.seasons.find((el) => el.season_number == seasonNumber)) {
+        this.needRefresh = true;
+      }
+      if (this.needRefresh) {
+        const { results, loading, error } = await fetchSerieSeason(
+          id,
+          seasonNumber
+        );
+        this.loading = loading.value;
+        this.errors = error.value;
+
+        if (Array.isArray(this.seasons)) {
+          const oldSeason = this.seasons.filter(
+            (el) => el.id !== (results.value as SerieSeasonInterface).id
+          );
+
+          this.seasons = [
+            ...oldSeason,
+            results.value,
+          ] as SerieSeasonInterface[];
+          this.needRefresh = false;
+        } else {
+          this.seasons = [results.value] as SerieSeasonInterface[];
+          this.needRefresh = false;
+        }
+      }
     },
 
     async fetchSerieCredits(id: string) {
@@ -199,7 +256,7 @@ export function initialFetchSerieDetails(idSerie: string): void {
   serieDetailStore.fetchSerieTrailer(idSerie);
   serieDetailStore.fetchSerieWallpaper(idSerie);
   serieDetailStore.fetchSerieSimilar(idSerie);
-  serieDetailStore.fetchLastSerieSeason(idSerie);
 
   serieDetailStore.pages = { ...DEFAULT_DETAILS_PAGES };
+  serieDetailStore.seasons = [];
 }

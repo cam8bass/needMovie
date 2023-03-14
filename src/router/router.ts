@@ -66,6 +66,15 @@ export const router = createRouter({
     },
 
     {
+      path: "/serie/season/:id",
+      component: () =>
+        import(
+          "@/features/media/components/serie/components/serieDetails/season/SerieSeasonDetail.vue"
+        ),
+ 
+    },
+
+    {
       path: "/actor",
       component: () =>
         import("@/features/media/components/actors/TheActors.vue"),

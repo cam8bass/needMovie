@@ -9,14 +9,21 @@ import type {
 import type { navSeason } from "@/shared/types";
 import { ref } from "vue";
 defineProps<{
-  seasons: SerieSeasonInterface;
+  seasons: SerieSeasonInterface[];
   summary: SerieSummaryInterface;
+
+  lastSeason:SerieSeasonInterface
 }>();
 const btnNavSeason = ref<navSeason>("lastSeason");
 
 function updateSeasonNavigation(value: navSeason): void {
   btnNavSeason.value = value;
 }
+
+const emits = defineEmits<{
+  (e: "openLastSeason"): void;
+  (e: "openSelectedSeason", seasonNumber: number): void;
+}>();
 </script>
 
 <template>
@@ -30,14 +37,17 @@ function updateSeasonNavigation(value: navSeason): void {
         class="season__list"
         v-if="btnNavSeason === 'lastSeason'"
         :btnNavSeason="btnNavSeason"
-        :seasons="seasons"
-        :summary="summary"
+        :summary="summary.seasons.slice(-1).pop()!"
+        @openLastSeason="emits('openLastSeason')"
+        :lastSeason="lastSeason"
       />
       <ListSeason
         class="season__list"
         v-if="btnNavSeason === 'allSeason'"
         :btnNavSeason="btnNavSeason"
         :summary="summary"
+        @open-selected-season="emits('openSelectedSeason', $event)"
+        :seasons="seasons"
       />
     </div>
   </div>

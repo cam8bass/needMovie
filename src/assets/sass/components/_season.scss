@@ -10,9 +10,7 @@
     &:not(:first-of-type) {
       margin-top: 2rem;
     }
-  }
 
-  &__link {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,10 +22,27 @@
   }
 
   &__description {
+    display: flex;
+    flex-direction: column;
+    position: relative;
     padding: 2rem 0;
+    width: 100%;
+
     @include m.sm {
       padding: 2rem;
       margin-left: 2rem;
+    }
+
+    @include m.md {
+      &::after {
+        content: "";
+        width: 0.1rem;
+        height: 100%;
+        background-color: var(--textColor-1);
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
     }
   }
 
@@ -56,6 +71,10 @@
     object-fit: cover;
     object-position: center;
     align-self: center;
+
+    @include m.md {
+      align-self: flex-start;
+    }
   }
 
   &__title {
@@ -77,4 +96,101 @@
     font-size: 1.6rem;
     margin-top: 1rem;
   }
+
+  &__btn {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    color: var(--textColor-2);
+    font-family: var(--fontText);
+    align-self: flex-end;
+    background-color: transparent;
+    transition: color 0.2s;
+    &:hover,
+    &:active {
+      color: var(--backgroundColor-primary-2);
+    }
+  }
+
+  &__episode {
+    &-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-item {
+      background-color: #fdfdfd;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, min-content);
+      align-items: center;
+      gap: 2rem;
+      font-size: 1.6rem;
+      font-family: var(--fontText);
+      color: var(--textColor-2);
+      margin-top: 2rem;
+      border-radius: 10px;
+      box-shadow: var(--boxShadow-1);
+      padding: 2rem 1rem;
+      @include m.md {
+        grid-template-columns: min-content 1fr;
+        grid-template-rows: repeat(3, min-content);
+        padding: 2rem;
+      }
+    }
+
+    &-img {
+      justify-self: center;
+      border-radius: 10px;
+      box-shadow: var(--boxShadow-1);
+      width: 20rem;
+      object-fit: cover;
+      object-position: center;
+      align-self: center;
+
+      @include m.md {
+        grid-column: 1/2;
+        grid-row: 1/-1;
+      }
+    }
+
+    &-title {
+      grid-column: 1/-1;
+      justify-self: center;
+      font-size: 2rem;
+      color: var(--textColor-2);
+      font-family: var(--fontSubtitle);
+      @include m.md {
+        justify-self: start;
+        grid-column: 2/-1;
+      }
+    }
+
+    &-overview {
+      @include m.md {
+        grid-column: 2/-1;
+      }
+    }
+
+    &-text {
+      grid-column: 1/-1;
+      justify-self: flex-end;
+      @include m.md {
+        grid-column: 2/-1;
+      }
+    }
+
+    &-score {
+      color: var(--backgroundColor-primary-2);
+    }
+  }
+}
+
+.v-leave-to,
+.v-enter-from {
+  opacity: 0;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.2s;
 }

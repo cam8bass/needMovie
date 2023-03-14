@@ -18,8 +18,10 @@ import type {
 } from "@/shared/interfaces";
 import { useRoute } from "vue-router";
 import { watch } from "vue";
+
 const serieDetailStore = useSerieDetailStore();
 const route = useRoute();
+
 function getCast(page: number): SerieCastInterface[] {
   return serieDetailStore.getCast(page);
 }
@@ -52,6 +54,18 @@ function incPagePoster(): void {
   serieDetailStore.pages.posterPage++;
 }
 
+function fetchLastSeasonDetail() {
+  const id = route.params.id as string;
+  const lastSeasonNumber = serieDetailStore.summary.number_of_seasons;
+
+  serieDetailStore.fetchLastSerieSeason(id, lastSeasonNumber);
+}
+
+function fetchSelectedSeason(seasonNumber: number) {
+  const id = route.params.id as string;
+  serieDetailStore.fetchSerieSeason(id, seasonNumber);
+}
+
 watch(
   () => route.params.id as string,
   (newId) => {
@@ -69,11 +83,14 @@ watch(
       :summary="serieDetailStore.summary"
       :director="serieDetailStore.getDirector"
     />
+
     <SerieSeason
+      :lastSeason="serieDetailStore.getLastSeason"
       :seasons="serieDetailStore.seasons"
       :summary="serieDetailStore.summary"
+      @openLastSeason="fetchLastSeasonDetail"
+      @open-selected-season="fetchSelectedSeason"
     />
-
     <SerieActor
       :crews="getCrew(serieDetailStore.pages.crewPage)"
       :casts="getCast(serieDetailStore.pages.castPage)"
