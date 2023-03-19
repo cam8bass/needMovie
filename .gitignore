@@ -29,5 +29,6 @@ coverage
 
 
 new.md
-requete.md
-/services
+
+shared/services/
+shared/variables/
