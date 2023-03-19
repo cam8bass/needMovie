@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { MovieCreditsInterface } from "@/shared/interfaces";
+import type { ActorCreditsInterface } from "@/shared/interfaces";
 import type { navCredits } from "@/shared/types";
 
 defineProps<{
-  btnNavCredits: navCredits;
-  credits: MovieCreditsInterface;
+  btnNavJob: navCredits;
+  credits: ActorCreditsInterface;
 }>();
 
 const emits = defineEmits<{
@@ -19,22 +19,18 @@ const emits = defineEmits<{
         <button
           class="navigationSection__btn"
           @click="emits('updateNavigation', 'cast')"
-          :class="
-            btnNavCredits === 'cast' ? 'navigationSection__btn--active' : ''
-          "
+          :class="btnNavJob === 'cast' ? 'navigationSection__btn--active' : ''"
         >
-          Acteurs
+          Interprétations
         </button>
       </li>
       <li class="navigationSection__item" v-if="credits.crew.length">
         <button
           class="navigationSection__btn"
           @click="emits('updateNavigation', 'crew')"
-          :class="
-            btnNavCredits === 'crew' ? 'navigationSection__btn--active' : ''
-          "
+          :class="btnNavJob === 'crew' ? 'navigationSection__btn--active' : ''"
         >
-          Équipe technique
+          Production
         </button>
       </li>
     </ul>

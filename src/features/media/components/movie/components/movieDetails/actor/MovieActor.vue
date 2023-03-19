@@ -3,17 +3,17 @@ import MovieActorNav from "./MovieActorNav.vue";
 import MovieCast from "./MovieCast.vue";
 import MovieCrew from "./MovieCrew.vue";
 import type {
-  CastInterface,
-  CreditsInterface,
-  CrewInterface,
+  MovieCastInterface,
+  MovieCreditsInterface,
+  MovieCrewInterface,
 } from "@/shared/interfaces";
 import type { navCredits } from "@/shared/types";
 import { ref } from "vue";
 
 defineProps<{
-  crews: CrewInterface[];
-  casts: CastInterface[];
-  credits: CreditsInterface;
+  crews: MovieCrewInterface[];
+  casts: MovieCastInterface[];
+  credits: MovieCreditsInterface;
 }>();
 
 const emits = defineEmits<{

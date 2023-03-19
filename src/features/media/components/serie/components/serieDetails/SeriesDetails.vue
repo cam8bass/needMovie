@@ -2,7 +2,7 @@
 import {
   initialFetchSerieDetails,
   useSerieDetailStore,
-} from "@/features/media/stores/SerieDetailStore";
+} from "@/features/media/stores/serieDetailStore";
 import TheLoading from "@/shared/components/TheLoading.vue";
 import SerieSummary from "./SerieSummary.vue";
 import SerieActor from "./actor/SerieActor.vue";

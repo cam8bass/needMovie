@@ -1,4 +1,5 @@
-export * from "@/shared/services/home.service";
-export * from "@/shared/services/search.service";
-export * from "@/shared/services/actor.service";
-
+export * from "@/shared/services/Movie.service";
+export * from "@/shared/services/Serie.service";
+export * from "@/shared/services/Actor.service";
+export * from "@/shared/services/Search.service";
+export * from "@/shared/services/Utilities.service";

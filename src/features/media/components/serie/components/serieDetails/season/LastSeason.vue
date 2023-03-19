@@ -24,6 +24,7 @@ const openDetailSeason = ref<boolean>(false);
   <ul class="season__list">
     <li class="season__item">
       <img
+        v-if="summary.poster_path"
         :src="'https://image.tmdb.org/t/p/w500/' + summary.poster_path"
         alt="poster season"
         class="season__img"

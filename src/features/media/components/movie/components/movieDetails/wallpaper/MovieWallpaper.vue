@@ -10,7 +10,7 @@ import type {
 import type { navWallpaper } from "@/shared/types";
 import { ref } from "vue";
 
-defineProps<{
+const props = defineProps<{
   backdrops: WallpapperBackdropsInterface[];
   posters: WallpapperPostersInterface[];
   wallpappers: WallpapperInterface;
@@ -21,7 +21,9 @@ const emits = defineEmits<{
   (e: "incPagePoster"): void;
 }>();
 
-const btnNavWallpaper = ref<navWallpaper>("backdrops");
+const btnNavWallpaper = ref<navWallpaper>(
+  props.backdrops.length ? "backdrops" : "posters"
+);
 
 function updateWallpaperNavigation(value: navWallpaper): void {
   btnNavWallpaper.value = value;

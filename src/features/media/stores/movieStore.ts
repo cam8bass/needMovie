@@ -4,7 +4,7 @@ import {
   type MovieContentInterface,
   type MoviePageInterface,
 } from "@/shared/interfaces";
-import { fetchMedia } from "@/shared/services";
+import { fetchMovieByCategorie } from "@/shared/services/Movie.service";
 import { defineStore } from "pinia";
 
 interface MovieStore {
@@ -31,11 +31,10 @@ export const useMovieStore = defineStore("movieStore", {
   actions: {
     async fetchPopularMovie(page?: number) {
       this.loading = true;
+     
       if (page) {
-        const { results, loading, error } = await fetchMedia(
-          "movie",
+        const { results, loading, error } = await fetchMovieByCategorie(
           "popular",
-          "",
           page
         );
         this.loading = loading.value;
@@ -46,8 +45,7 @@ export const useMovieStore = defineStore("movieStore", {
         ];
         this.popular.page++;
       } else {
-        const { results, loading, error } = await fetchMedia(
-          "movie",
+        const { results, loading, error } = await fetchMovieByCategorie(
           "popular"
         );
 
@@ -59,10 +57,8 @@ export const useMovieStore = defineStore("movieStore", {
     async fetchTopRatedMovie(page?: number) {
       this.loading = true;
       if (page) {
-        const { results, loading, error } = await fetchMedia(
-          "movie",
+        const { results, loading, error } = await fetchMovieByCategorie(
           "top_rated",
-          "",
           page
         );
         this.loading = loading.value;
@@ -77,8 +73,7 @@ export const useMovieStore = defineStore("movieStore", {
           this.needRefresh = true;
         }
         if (this.needRefresh) {
-          const { results, loading, error } = await fetchMedia(
-            "movie",
+          const { results, loading, error } = await fetchMovieByCategorie(
             "top_rated"
           );
           this.loading = loading.value;
@@ -93,10 +88,8 @@ export const useMovieStore = defineStore("movieStore", {
     async fetchUpComingMovie(page?: number) {
       this.loading = true;
       if (page) {
-        const { results, loading, error } = await fetchMedia(
-          "movie",
+        const { results, loading, error } = await fetchMovieByCategorie(
           "upcoming",
-          "",
           page
         );
         this.loading = loading.value;
@@ -111,8 +104,7 @@ export const useMovieStore = defineStore("movieStore", {
           this.needRefresh = true;
         }
         if (this.needRefresh) {
-          const { results, loading, error } = await fetchMedia(
-            "movie",
+          const { results, loading, error } = await fetchMovieByCategorie(
             "upcoming"
           );
           this.loading = loading.value;

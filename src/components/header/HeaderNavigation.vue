@@ -33,14 +33,7 @@ const menu = ref<boolean>(false);
             >Séries</RouterLink
           >
         </li>
-        <li class="nav__menu-item">
-          <RouterLink
-            to="/streaming"
-            @click="menu = false"
-            class="nav__menu-link"
-            >Streaming</RouterLink
-          >
-        </li>
+       
         <li class="nav__menu-item">
           <RouterLink to="/login" @click="menu = false" class="nav__menu-link"
             >Mon compte</RouterLink
@@ -161,7 +154,7 @@ const menu = ref<boolean>(false);
 
       @include m.lg {
         display: grid;
-        grid-template-columns: repeat(3, min-content) 1fr;
+        grid-template-columns: repeat(2, min-content) 1fr;
         height: max-content;
       }
     }

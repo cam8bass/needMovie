@@ -19,8 +19,9 @@ import {
 } from "@/shared/interfaces";
 
 import {
-  fetchDetails,
+  fetchSerieDetails,
   fetchSerieSeason,
+  fetchTrailer,
   fetchWallpaper,
 } from "@/shared/services";
 import { defineStore } from "pinia";
@@ -134,7 +135,7 @@ export const useSerieDetailStore = defineStore("serieDetailStore", {
   actions: {
     async fetchSerieSummary(id: string) {
       this.loading = true;
-      const { results, loading, error } = await fetchDetails("tv", id);
+      const { results, loading, error } = await fetchSerieDetails(id);
       this.loading = loading.value;
       this.errors = error.value;
       this.summary = results.value as SerieSummaryInterface;
@@ -201,8 +202,7 @@ export const useSerieDetailStore = defineStore("serieDetailStore", {
 
     async fetchSerieCredits(id: string) {
       this.loading = true;
-      const { results, loading, error } = await fetchDetails(
-        "tv",
+      const { results, loading, error } = await fetchSerieDetails(
         id,
         "aggregate_credits"
       );
@@ -214,11 +214,7 @@ export const useSerieDetailStore = defineStore("serieDetailStore", {
     async fetchSerieTrailer(id: string) {
       this.loading = true;
 
-      const { results, loading, error } = await fetchDetails(
-        "tv",
-        id,
-        "videos"
-      );
+      const { results, loading, error } = await fetchTrailer(id, "tv");
       this.loading = loading.value;
       this.errors = error.value;
       this.trailer = results.value as TrailerInterface;
@@ -227,7 +223,7 @@ export const useSerieDetailStore = defineStore("serieDetailStore", {
     async fetchSerieWallpaper(id: string) {
       this.loading = true;
 
-      const { results, loading, error } = await fetchWallpaper("tv", id);
+      const { results, loading, error } = await fetchWallpaper(id, "tv");
 
       this.loading = loading.value;
       this.errors = error.value;
@@ -237,8 +233,7 @@ export const useSerieDetailStore = defineStore("serieDetailStore", {
     async fetchSerieSimilar(id: string) {
       this.loading = true;
 
-      const { results, loading, error } = await fetchDetails(
-        "tv",
+      const { results, loading, error } = await fetchSerieDetails(
         id,
         "recommendations"
       );

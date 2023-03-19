@@ -12,6 +12,7 @@
   justify-content: center;
   align-items: center;
   height: 5rem;
+  z-index: 2;
   background-image: linear-gradient(
     to right bottom,
     var(--backgroundColor-secondary-1),

@@ -5,7 +5,7 @@ import { initialFetchMovieDetails } from "@/features/media/stores/movieDetailSto
 
 import { createRouter, createWebHistory } from "vue-router";
 import { initialFetchPageSerie } from "@/features/media/stores/serieStore";
-import { initialFetchSerieDetails } from "@/features/media/stores/SerieDetailStore";
+import { initialFetchSerieDetails } from "@/features/media/stores/serieDetailStore";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -34,6 +34,7 @@ export const router = createRouter({
       path: "/movie",
       component: () => import("@/features/media/components/movie/TheMovie.vue"),
       beforeEnter: [inititalFetchPageMovie],
+      name: "movie",
     },
     {
       path: "/movie/:id",
@@ -69,9 +70,8 @@ export const router = createRouter({
       path: "/serie/season/:id",
       component: () =>
         import(
-          "@/features/media/components/serie/components/serieDetails/season/SerieSeasonDetail.vue"
+          "@/features/media/components/serie/components/serieDetails/season/SerieSeason.vue"
         ),
- 
     },
 
     {
@@ -88,9 +88,5 @@ export const router = createRouter({
       component: () => import("@/views/NotFound.vue"),
     },
   ],
-  // scrollBehavior: () => {
-  //   return {
-  //     top: 0,
-  //   };
-  // },
+
 });

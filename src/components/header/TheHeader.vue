@@ -24,6 +24,7 @@ import headerNavigation from "@/components/header/HeaderNavigation.vue";
   align-items: center;
   height: 6rem;
   padding: 0 1rem;
+  z-index: 3;
 
   background-image: linear-gradient(
     to right bottom,

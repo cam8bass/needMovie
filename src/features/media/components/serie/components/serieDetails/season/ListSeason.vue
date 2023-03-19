@@ -33,7 +33,7 @@ function toogleOpenlist(index: number) {
       :key="summarySeason.id"
       class="season__item"
     >
-      <img
+      <img v-if="summarySeason.poster_path"
         :src="'https://image.tmdb.org/t/p/w300/' + summarySeason.poster_path"
         alt="poster season"
         class="season__img"

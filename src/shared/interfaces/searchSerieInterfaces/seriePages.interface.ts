@@ -5,7 +5,7 @@ export interface SeriePageInterface {
 }
 
 export const DEFAULT_SERIE_PAGES = {
-  popularPage: 1,
-  topRatedPage: 1,
-  currentlyAiringPage: 1,
+  popularPage: 2,
+  topRatedPage: 2,
+  currentlyAiringPage: 2,
 };

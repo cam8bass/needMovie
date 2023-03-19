@@ -13,11 +13,6 @@
           <span class="nav__link-text">Séries</span>
         </RouterLink>
       </li>
-      <li class="nav__item">
-        <RouterLink class="nav__link nav__link-documentary" to="/streaming">
-          <span class="nav__link-text">Streaming</span></RouterLink
-        >
-      </li>
     </ul>
   </nav>
 </template>

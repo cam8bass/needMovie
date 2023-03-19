@@ -49,7 +49,7 @@ function updateUpcomingMovie(): void {
 
 <template>
   <TheLoading v-if="movieStore.loading" />
-  <div class="content" v-if="!movieStore.loading">
+  <div class="content">
     <MovieHead />
     <MovieDiscover
       :btnNav="{ btnPopularMovie, btnTopRatedMovie, btnUpcomingMovie }"

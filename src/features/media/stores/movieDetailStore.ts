@@ -9,15 +9,19 @@ import {
   type MovieSummaryInterface,
   type TrailerInterface,
   type WallpapperInterface,
-  type CreditsInterface,
-  type CrewInterface,
-  type CastInterface,
+  type MovieCreditsInterface,
+  type MovieCrewInterface,
+  type MovieCastInterface,
   type WallpapperPostersInterface,
   type WallpapperBackdropsInterface,
   type DetailsPagesInterface,
   DEFAULT_DETAILS_PAGES,
 } from "@/shared/interfaces";
-import { fetchDetails, fetchWallpaper } from "@/shared/services";
+import {
+  fetchMovieDetails,
+  fetchTrailer,
+  fetchWallpaper,
+} from "@/shared/services";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
@@ -27,7 +31,7 @@ interface MovieDetailStore {
   trailer: TrailerInterface;
   wallpapper: WallpapperInterface;
   similar: MovieSimilarInterface;
-  credits: CreditsInterface;
+  credits: MovieCreditsInterface;
   loading: boolean;
   errors: any;
   pages: DetailsPagesInterface;
@@ -50,11 +54,11 @@ export const useMovieDetailStore = defineStore("movieDetailStore", {
   getters: {
     getCast:
       (state: MovieDetailStore) =>
-      (page: number): CastInterface[] => {
+      (page: number): MovieCastInterface[] => {
         const castPerPage: number = 20;
         const startIndex = ref<number>((page - 1) * castPerPage);
         const endIndex = ref<number>(startIndex.value + castPerPage);
-        const slicedcast = ref<CastInterface[]>(
+        const slicedcast = ref<MovieCastInterface[]>(
           state.credits.cast.slice(startIndex.value, endIndex.value)
         );
         if (page > 1) {
@@ -66,11 +70,11 @@ export const useMovieDetailStore = defineStore("movieDetailStore", {
 
     getCrew:
       (state: MovieDetailStore) =>
-      (page: number): CrewInterface[] => {
+      (page: number): MovieCrewInterface[] => {
         const crewPerPage: number = 20;
         const startIndex = ref<number>((page - 1) * crewPerPage);
         const endIndex = ref<number>(startIndex.value + crewPerPage);
-        const slicedcrew = ref<CrewInterface[]>(
+        const slicedcrew = ref<MovieCrewInterface[]>(
           state.credits.crew.slice(startIndex.value, endIndex.value)
         );
         if (page > 1) {
@@ -114,14 +118,14 @@ export const useMovieDetailStore = defineStore("movieDetailStore", {
         }
       },
 
-    getDirector(): CrewInterface[] {
+    getDirector(): MovieCrewInterface[] {
       return this.credits.crew.filter((el) => el.job === "Director");
     },
   },
   actions: {
     async fetchMovieSummary(id: string) {
       this.loading = true;
-      const { results, loading, error } = await fetchDetails("movie", id);
+      const { results, loading, error } = await fetchMovieDetails(id);
       this.loading = loading.value;
       this.errors = error.value;
       this.summary = results.value as MovieSummaryInterface;
@@ -130,11 +134,7 @@ export const useMovieDetailStore = defineStore("movieDetailStore", {
     async fetchTrailer(id: string) {
       this.loading = true;
 
-      const { results, loading, error } = await fetchDetails(
-        "movie",
-        id,
-        "videos"
-      );
+      const { results, loading, error } = await fetchTrailer(id, "movie");
       this.loading = loading.value;
       this.errors = error.value;
       this.trailer = results.value as TrailerInterface;
@@ -143,7 +143,7 @@ export const useMovieDetailStore = defineStore("movieDetailStore", {
     async fetchWallpaper(id: string) {
       this.loading = true;
 
-      const { results, loading, error } = await fetchWallpaper("movie", id);
+      const { results, loading, error } = await fetchWallpaper(id, "movie");
 
       this.loading = loading.value;
       this.errors = error.value;
@@ -153,21 +153,19 @@ export const useMovieDetailStore = defineStore("movieDetailStore", {
     async fetchCredits(id: string) {
       this.loading = true;
 
-      const { results, loading, error } = await fetchDetails(
-        "movie",
+      const { results, loading, error } = await fetchMovieDetails(
         id,
         "credits"
       );
       this.loading = loading.value;
       this.errors = error.value;
-      this.credits = results.value as CreditsInterface;
+      this.credits = results.value as MovieCreditsInterface;
     },
 
     async fetchSimilar(id: string) {
       this.loading = true;
 
-      const { results, loading, error } = await fetchDetails(
-        "movie",
+      const { results, loading, error } = await fetchMovieDetails(
         id,
         "recommendations"
       );

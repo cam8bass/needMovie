@@ -1,11 +1,5 @@
 import type { MediaInterface } from "./Media.interface";
 
-// export interface MovieInterface {
-//   popular: MovieContentInterface;
-//   topRated: MovieContentInterface;
-//   upcoming: MovieContentInterface;
-// }
-
 export interface MovieContentInterface extends MediaInterface {
   results: MovieResultsInterface[] | [];
 }
@@ -26,9 +20,3 @@ export interface MovieResultsInterface {
   video: boolean;
   vote_average: number;
 }
-
-// export const DEFAULT_MOVIE = {
-//   popular: { ...DEFAULT_MEDIA },
-//   topRated: { ...DEFAULT_MEDIA },
-//   upcoming: { ...DEFAULT_MEDIA },
-// };

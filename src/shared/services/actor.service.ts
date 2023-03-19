@@ -3,44 +3,30 @@ import type {
   ActorCreditsInterface,
   ActorDetailsInterface,
   ActorImagesInterface,
-  ActorLatestInterface,
-  ActorPopularInterface,
 } from "../interfaces";
 import { ERROR_FETCH_MEDIA } from "../messages";
-
-const BASE_URL = "https://api.themoviedb.org/3";
-const API_KEY = "47accfeff32353d2ff47a97c0ed7c4ef";
-const LANG_FR = "fr-FR";
+import type { fetchActorDetailsType } from "../types";
+import { API_KEY, BASE_URL, LANG_FR } from "../variables";
 
 export async function fetchActorInformation(
   id: string,
-  search?: string
+  type?: fetchActorDetailsType
 ): Promise<{
   results: Ref<
-    | ActorDetailsInterface
-    | ActorCreditsInterface
-    | ActorImagesInterface
-    | ActorLatestInterface
-    | ActorPopularInterface
-    | []
+    ActorDetailsInterface | ActorCreditsInterface | ActorImagesInterface | []
   >;
   loading: Ref<boolean>;
   error: Ref<any>;
 }> {
   const results = ref<
-    | ActorDetailsInterface
-    | ActorCreditsInterface
-    | ActorImagesInterface
-    | ActorLatestInterface
-    | ActorPopularInterface
-    | []
+    ActorDetailsInterface | ActorCreditsInterface | ActorImagesInterface | []
   >([]);
   const loading = ref<boolean>(true);
   const error = ref<any>(null);
   try {
     const ajax = await fetch(
-      search
-        ? `${BASE_URL}/person/${id}/${search}?api_key=${API_KEY}&language=${LANG_FR}`
+      type
+        ? `${BASE_URL}/person/${id}/${type}?api_key=${API_KEY}&language=${LANG_FR}`
         : `${BASE_URL}/person/${id}?api_key=${API_KEY}&language=${LANG_FR}`
     );
 

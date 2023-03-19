@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { SerieCrewInterface } from "@/shared/interfaces";
 import type { SerieSummaryInterface } from "@/shared/interfaces/searchSerieInterfaces/serieSummary.interface";
+import { ERROR_EMPTY_OVERVIEW, ERROR_EMPTY_DETAIL } from "@/shared/messages";
 import { useRouter } from "vue-router";
 
 defineProps<{
@@ -13,7 +14,7 @@ const router = useRouter();
 
 <template>
   <section class="summary">
-    <button @click="router.push('/serie')" class="summary__btn">
+    <button @click="router.back()" class="summary__btn">
       <img
         src="@/assets/images/icon/icon-close.png"
         alt="icon arrow left "
@@ -22,10 +23,14 @@ const router = useRouter();
     </button>
 
     <img
+      v-if="summary.backdrop_path"
       :src="'https://image.tmdb.org/t/p/w500/' + summary.backdrop_path"
       alt="img movie"
       class="summary__background"
     />
+
+    <div v-else class="summary__background-empty">&nbsp;</div>
+
     <div class="summary__poster">
       <a
         :href="'https://image.tmdb.org/t/p/original/' + summary.poster_path"
@@ -33,7 +38,15 @@ const router = useRouter();
         class="summary__poster-link"
       >
         <img
+          v-if="summary.poster_path"
           :src="'https://image.tmdb.org/t/p/w500/' + summary.poster_path"
+          alt="img movie"
+          class="summary__poster-img"
+        />
+
+        <img
+          v-else
+          src="@/assets/images/icon/icon-no-pictures.png"
           alt="img movie"
           class="summary__poster-img"
         />
@@ -91,60 +104,84 @@ const router = useRouter();
 
     <div class="summary__details">
       <h1 class="summary__title">
-        {{ summary.original_name }}
-        <span class="summary__title-date" v-if="summary.first_air_date"
-          >({{ new Date(summary.first_air_date).getFullYear() }})</span
+        {{ summary.original_name ? summary.original_name : ERROR_EMPTY_DETAIL }}
+        <span class="summary__title-date"
+          >({{
+            summary.first_air_date
+              ? new Date(summary.first_air_date).getFullYear()
+              : ERROR_EMPTY_DETAIL
+          }})</span
         >
       </h1>
 
       <ul class="summary__list">
-        <li class="summary__item" v-if="summary.genres.length">
+        <li class="summary__item">
           Genre:
           <span class="summary__text"
-            >{{ summary.genres.map((el) => el.name).join(", ") }}
+            >{{
+              summary.genres.length
+                ? summary.genres.map((el) => el.name).join(", ")
+                : ERROR_EMPTY_DETAIL
+            }}
           </span>
         </li>
-        <li class="summary__item" v-if="summary.episode_run_time[0]">
+        <li class="summary__item">
           Durée:
           <span class="summary__text">
             {{
-              new Date(summary.episode_run_time[0]! * 60 * 1000).getUTCHours() +
-              " h " +
-              new Date(
-                summary.episode_run_time[0]! * 60 * 1000
-              ).getUTCMinutes() +
-              " min"
+              summary.episode_run_time[0]
+                ? new Date(
+                    summary.episode_run_time[0]! * 60 * 1000
+                  ).getUTCHours() +
+                  " h " +
+                  new Date(
+                    summary.episode_run_time[0]! * 60 * 1000
+                  ).getUTCMinutes() +
+                  " min"
+                : ERROR_EMPTY_DETAIL
             }}
           </span>
         </li>
 
-        <li class="summary__item" v-if="director.length">
+        <li class="summary__item">
           {{
-            director.map((el) => el.original_name).length < 1
+            director.map((el) => el.original_name).length < 1 && director.length
               ? "Producteur:"
               : "Producteurs:"
           }}
           <span class="summary__text">
-            {{ director.map((el) => el.original_name).join(", ") + "." }}</span
+            {{
+              director.length
+                ? director.map((el) => el.original_name).join(", ") + "."
+                : ERROR_EMPTY_DETAIL
+            }}</span
           >
         </li>
 
-        <li class="summary__item" v-if="summary.overview">
+        <li class="summary__item">
           Synopsis:
           <p class="summary__text">
-            {{ summary.overview }}
+            {{ summary.overview ? summary.overview : ERROR_EMPTY_OVERVIEW }}
           </p>
         </li>
-        <li class="summary__item" v-if="summary.number_of_seasons">
+        <li class="summary__item">
           Nombre de saisons :
           <span class="summary__text">
-            {{ summary.number_of_seasons }}
+            {{
+              summary.number_of_seasons
+                ? summary.number_of_seasons
+                : ERROR_EMPTY_DETAIL
+            }}
           </span>
         </li>
-        <li class="summary__item" v-if="summary.number_of_episodes">
+        <li class="summary__item">
           Nombre d'épisodes :
           <span class="summary__text">
-            {{ summary.number_of_episodes }}
+            {{
+              summary.number_of_episodes
+                ? summary.number_of_episodes
+                : ERROR_EMPTY_DETAIL
+            }}
           </span>
         </li>
       </ul>

@@ -1,4 +1,4 @@
-export interface CrewInterface {
+export interface MovieCrewInterface {
   adult: boolean;
   gender: number | null;
   id: number;
@@ -12,7 +12,7 @@ export interface CrewInterface {
   job: string;
 }
 
-export interface CastInterface {
+export interface MovieCastInterface {
   adult: boolean;
   gender: number | null;
   id: number;
@@ -27,13 +27,13 @@ export interface CastInterface {
   order: number;
 }
 
-export interface CreditsInterface {
+export interface MovieCreditsInterface {
   id: number;
-  cast: [CastInterface];
-  crew: [CrewInterface];
+  cast: [MovieCastInterface];
+  crew: [MovieCrewInterface];
 }
 
-export const DEFAULT_CREDIT: CreditsInterface = {
+export const DEFAULT_CREDIT: MovieCreditsInterface = {
   id: 0,
   cast: [
     {

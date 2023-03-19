@@ -11,8 +11,7 @@ import { ref } from "vue";
 defineProps<{
   seasons: SerieSeasonInterface[];
   summary: SerieSummaryInterface;
-
-  lastSeason:SerieSeasonInterface
+  lastSeason: SerieSeasonInterface;
 }>();
 const btnNavSeason = ref<navSeason>("lastSeason");
 

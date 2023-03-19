@@ -49,7 +49,7 @@ function updateCurrentlyAiringSerie(): void {
 
 <template>
   <TheLoading v-if="serieStore.loading" />
-  <div class="content" v-if="!serieStore.loading">
+  <div class="content">
     <SerieHead />
     <SerieDiscover
       :btnNav="{ btnPopularSerie, btnTopRatedSerie, btnCurrentlyAiringSerie }"
@@ -75,7 +75,6 @@ function updateCurrentlyAiringSerie(): void {
       @updateCurrentlyAiringSerie="updateCurrentlyAiringSerie"
     />
   </div>
- 
 </template>
 
 <style lang="scss" scoped>

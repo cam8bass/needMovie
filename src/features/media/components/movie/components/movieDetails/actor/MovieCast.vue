@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import type { CastInterface, CreditsInterface } from "@/shared/interfaces";
+import type {
+  MovieCastInterface,
+  MovieCreditsInterface,
+} from "@/shared/interfaces";
 
 defineProps<{
-  casts: CastInterface[];
-  credits: CreditsInterface;
+  casts: MovieCastInterface[];
+  credits: MovieCreditsInterface;
 }>();
 
 const emits = defineEmits<{

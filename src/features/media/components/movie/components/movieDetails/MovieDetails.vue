@@ -11,8 +11,8 @@ import {
 } from "../../../../stores/movieDetailStore";
 import TheLoading from "@/shared/components/TheLoading.vue";
 import type {
-  CastInterface,
-  CrewInterface,
+  MovieCastInterface,
+  MovieCrewInterface,
   WallpapperBackdropsInterface,
   WallpapperPostersInterface,
 } from "@/shared/interfaces";
@@ -22,11 +22,11 @@ import { useRoute } from "vue-router";
 const movieDetailStore = useMovieDetailStore();
 const route = useRoute();
 
-function getCast(page: number): CastInterface[] {
+function getCast(page: number): MovieCastInterface[] {
   return movieDetailStore.getCast(page);
 }
 
-function getCrew(page: number): CrewInterface[] {
+function getCrew(page: number): MovieCrewInterface[] {
   return movieDetailStore.getCrew(page);
 }
 

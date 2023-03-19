@@ -29,10 +29,20 @@ const emits = defineEmits<{
     >
       <RouterLink :to="'/serie/' + popularSerie.id" class="mediaList__link">
         <img
+          v-if="popularSerie.poster_path"
           :src="'https://image.tmdb.org/t/p/w500/' + popularSerie.poster_path"
           alt="movie image"
           class="mediaList__link-img"
         />
+        <img
+          v-else
+          src="@/assets/images/icon/icon-no-pictures.png"
+          alt="movie image"
+          class="mediaList__link-img mediaList__link-img--icon"
+        />
+        <span v-if="!popularSerie.poster_path" class="mediaList__link-title">{{
+          popularSerie.name
+        }}</span>
       </RouterLink>
     </li>
     <button
@@ -51,10 +61,20 @@ const emits = defineEmits<{
     >
       <RouterLink :to="'/serie/' + topRatedMovie.id" class="mediaList__link">
         <img
+          v-if="topRatedMovie.poster_path"
           :src="'https://image.tmdb.org/t/p/w500/' + topRatedMovie.poster_path"
           alt="movie image"
           class="mediaList__link-img"
         />
+        <img
+          v-else
+          src="@/assets/images/icon/icon-no-pictures.png"
+          alt="movie image"
+          class="mediaList__link-img mediaList__link-img--icon"
+        />
+        <span v-if="!topRatedMovie.poster_path" class="mediaList__link-title">{{
+          topRatedMovie.name
+        }}</span>
       </RouterLink>
     </li>
     <button
@@ -73,10 +93,20 @@ const emits = defineEmits<{
     >
       <RouterLink :to="'/serie/' + upcomingMovie.id" class="mediaList__link">
         <img
+          v-if="upcomingMovie.poster_path"
           :src="'https://image.tmdb.org/t/p/w500/' + upcomingMovie.poster_path"
           alt="movie image"
           class="mediaList__link-img"
         />
+        <img
+          v-else
+          src="@/assets/images/icon/icon-no-pictures.png"
+          alt="movie image"
+          class="mediaList__link-img mediaList__link-img--icon"
+        />
+        <span v-if="!upcomingMovie.poster_path" class="mediaList__link-title">{{
+          upcomingMovie.name
+        }}</span>
       </RouterLink>
     </li>
     <button

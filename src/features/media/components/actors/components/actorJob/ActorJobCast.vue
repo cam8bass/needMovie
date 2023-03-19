@@ -1,26 +1,26 @@
 <script setup lang="ts">
 import type {
-  MovieCreditsInterface,
-  MovieCrewInterface,
+  ActorCreditsCastInterface,
+  ActorCreditsInterface,
 } from "@/shared/interfaces";
 
 defineProps<{
-  crews: MovieCrewInterface[];
-  credits: MovieCreditsInterface;
+  casts: ActorCreditsCastInterface[];
+  credits: ActorCreditsInterface;
 }>();
 
 const emits = defineEmits<{
-  (e: "incPageCrew"): void;
+  (e: "incPageCast"): void;
 }>();
 </script>
 
 <template>
   <ul class="landscapeList">
-    <li v-for="crew in crews" :key="crew.id" class="landscapeList__item">
-      <RouterLink :to="'/actor/' + crew.id" class="landscapeList__link">
+    <li v-for="cast in casts" :key="cast.id" class="landscapeList__item">
+      <RouterLink :to="'/movie/'+cast.id" class="landscapeList__link">
         <img
-          v-if="crew.profile_path"
-          :src="'https://image.tmdb.org/t/p/w300' + crew.profile_path"
+          v-if="cast.backdrop_path"
+          :src="'https://image.tmdb.org/t/p/w300' + cast.backdrop_path"
           alt="img actor"
           class="actor__img"
         />
@@ -30,15 +30,15 @@ const emits = defineEmits<{
           alt="icon no picture"
           class="actor__img"
         />
-        <span class="landscapeList__name">{{ crew.name }}</span>
-        <span class="landscapeList__job">{{ crew.job }}</span>
+        <span class="landscapeList__name">{{ cast.title }}</span>
+        <span class="landscapeList__job">{{ cast.character }}</span>
       </RouterLink>
     </li>
     <li class="landscapeList__item">
       <button
-        v-if="credits.crew.length !== crews.length"
+        v-if="credits.cast.length !== casts.length"
         class="actor__btn"
-        @click="emits('incPageCrew')"
+        @click="emits('incPageCast')"
       >
         Afficher plus
       </button>
@@ -48,5 +48,6 @@ const emits = defineEmits<{
 
 <style lang="scss" scoped>
 @import "@/assets/sass/components/landscapeList";
+
 @import "@/assets/sass/components/actor";
 </style>

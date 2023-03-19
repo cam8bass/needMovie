@@ -12,9 +12,9 @@ export interface MoviePageInterface {
 }
 
 export const DEFAULT_MOVIE_PAGES = {
-  popularPage: 1,
-  topRatedPage: 1,
-  upcomingPage: 1,
+  popularPage: 2,
+  topRatedPage: 2,
+  upcomingPage: 2,
 };
 
 export const DEFAULT_DETAILS_PAGES = {

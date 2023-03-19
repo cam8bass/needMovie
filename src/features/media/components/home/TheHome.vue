@@ -5,14 +5,25 @@ import HomeNews from "@/features/media/components/home/components/homeNews.vue";
 import HomeTools from "@/features/media/components/home/components/homeTools.vue";
 import { useHomeStore } from "../../stores/homeStore";
 import TheLoading from "@/shared/components/TheLoading.vue";
+import { useSearchStore } from "../../stores/searchStore";
 
 const homeStore = useHomeStore();
+const searchStore = useSearchStore();
+function updateSearch(inputValue: string) {
+  searchStore.filter.search = inputValue;
+  searchStore.fetchSearch();
+}
 </script>
 
 <template>
   <TheLoading v-if="homeStore.loading" />
   <div class="home">
-    <HomeSearch />
+    <HomeSearch
+      @updateSearch="updateSearch"
+      :searchMovieResults="searchStore.getMovieResults"
+      :searchSerieResults="searchStore.getSerieResult"
+      :searchActorResults="searchStore.getActorResult"
+    />
     <HomeNav />
     <HomeNews
       :cinemaMovies="homeStore.cinema.results"

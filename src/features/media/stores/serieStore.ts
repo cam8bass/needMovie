@@ -3,7 +3,8 @@ import {
   DEFAULT_SERIE_PAGES,
   type SeriePageInterface,
 } from "@/shared/interfaces/searchSerieInterfaces/seriePages.interface";
-import { fetchMedia } from "@/shared/services";
+import { fetchSerieByCategorie } from "@/shared/services";
+
 import { defineStore } from "pinia";
 
 interface SerieStore {
@@ -31,10 +32,8 @@ export const useSerieStore = defineStore("serieStore", {
     async fetchPopularSerie(page?: number) {
       this.loading = true;
       if (page) {
-        const { results, loading, error } = await fetchMedia(
-          "tv",
+        const { results, loading, error } = await fetchSerieByCategorie(
           "popular",
-          "",
           page
         );
         this.loading = loading.value;
@@ -45,7 +44,9 @@ export const useSerieStore = defineStore("serieStore", {
         ];
         this.popular.page++;
       } else {
-        const { results, loading, error } = await fetchMedia("tv", "popular");
+        const { results, loading, error } = await fetchSerieByCategorie(
+          "popular"
+        );
         this.loading = loading.value;
         this.errors = error.value;
         this.popular = results.value as SerieContentInterface;
@@ -54,10 +55,8 @@ export const useSerieStore = defineStore("serieStore", {
     async fetchTopRatedSerie(page?: number) {
       this.loading = true;
       if (page) {
-        const { results, loading, error } = await fetchMedia(
-          "tv",
+        const { results, loading, error } = await fetchSerieByCategorie(
           "top_rated",
-          "",
           page
         );
         this.loading = loading.value;
@@ -72,8 +71,7 @@ export const useSerieStore = defineStore("serieStore", {
           this.needRefresh = true;
         }
         if (this.needRefresh) {
-          const { results, loading, error } = await fetchMedia(
-            "tv",
+          const { results, loading, error } = await fetchSerieByCategorie(
             "top_rated"
           );
           this.loading = loading.value;
@@ -88,10 +86,8 @@ export const useSerieStore = defineStore("serieStore", {
     async fetchCurrentlyAiringSerie(page?: number) {
       this.loading = true;
       if (page) {
-        const { results, loading, error } = await fetchMedia(
-          "tv",
+        const { results, loading, error } = await fetchSerieByCategorie(
           "on_the_air",
-          "",
           page
         );
         this.loading = loading.value;
@@ -107,8 +103,7 @@ export const useSerieStore = defineStore("serieStore", {
         }
 
         if (this.needRefresh) {
-          const { results, loading, error } = await fetchMedia(
-            "tv",
+          const { results, loading, error } = await fetchSerieByCategorie(
             "on_the_air"
           );
           this.loading = loading.value;
