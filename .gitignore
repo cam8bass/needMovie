@@ -27,8 +27,5 @@ coverage
 *.sln
 *.sw?
 
-
 new.md
-
-/src/shared/services/
 /src/shared/variables/

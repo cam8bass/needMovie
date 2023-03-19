@@ -2,7 +2,7 @@ import { ref } from "vue";
 import type { Ref } from "vue";
 
 import type {
-  CreditsInterface,
+  MovieCreditsInterface,
   MovieContentInterface,
   MovieSimilarInterface,
   MovieSummaryInterface,
@@ -53,13 +53,13 @@ export async function fetchMovieDetails(
   type?: fetchMovieDetailsType
 ): Promise<{
   results: Ref<
-    MovieSummaryInterface | MovieSimilarInterface | CreditsInterface | []
+    MovieSummaryInterface | MovieSimilarInterface | MovieCreditsInterface | []
   >;
   loading: Ref<boolean>;
   error: Ref<any>;
 }> {
   const results = ref<
-    MovieSummaryInterface | MovieSimilarInterface | CreditsInterface | []
+    MovieSummaryInterface | MovieSimilarInterface | MovieCreditsInterface | []
   >([]);
   const loading = ref<boolean>(true);
   const error = ref<any>(null);
