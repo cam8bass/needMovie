@@ -30,5 +30,5 @@ coverage
 
 new.md
 
-shared/services/
-shared/variables/
+/src/shared/services/
+/src/shared/variables/
