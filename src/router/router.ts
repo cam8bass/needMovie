@@ -21,7 +21,7 @@ export const router = createRouter({
     },
 
     {
-      path: "/actor/:id",
+      path: "/actor/:id([0-9]+)",
       component: () =>
         import("@/features/media/components/actors/TheActors.vue"),
       beforeEnter: (to) => {
@@ -37,7 +37,7 @@ export const router = createRouter({
       name: "movie",
     },
     {
-      path: "/movie/:id",
+      path: "/movie/:id([0-9]+)",
       component: () =>
         import(
           "@/features/media/components/movie/components/movieDetails/MovieDetails.vue"
@@ -55,7 +55,7 @@ export const router = createRouter({
       beforeEnter: [initialFetchPageSerie],
     },
     {
-      path: "/serie/:id",
+      path: "/serie/:id([0-9]+)",
       component: () =>
         import(
           "@/features/media/components/serie/components/serieDetails/SeriesDetails.vue"
@@ -67,7 +67,7 @@ export const router = createRouter({
     },
 
     {
-      path: "/serie/season/:id",
+      path: "/serie/season/:id([0-9]+)",
       component: () =>
         import(
           "@/features/media/components/serie/components/serieDetails/season/SerieSeason.vue"
@@ -86,6 +86,7 @@ export const router = createRouter({
     {
       path: "/:notFound(.*)*",
       component: () => import("@/views/NotFound.vue"),
+      name: "NotFound",
     },
   ],
 });
