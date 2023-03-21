@@ -2,9 +2,11 @@
 export * from "@/shared/interfaces/mediaInterfaces/Media.interface";
 export * from "@/shared/interfaces/mediaInterfaces/Movie.interface";
 export * from "@/shared/interfaces/mediaInterfaces/Serie.interface";
+// === HomeInterface ===
+export * from "@/shared/interfaces/homeInterfaces/homePage.interface";
+export * from "@/shared/interfaces/homeInterfaces/homeCinema.interface";
 // === SearchBarInterface===
 export * from "@/shared/interfaces/searchBarInterface/search.interface";
-
 // === SearchMovieInterface ===
 export * from "@/shared/interfaces/searchMovieInterfaces/movieSummary.interface";
 export * from "@/shared/interfaces/searchMovieInterfaces/trailer.interface";
@@ -24,5 +26,3 @@ export * from "@/shared/interfaces/actorInterfaces/actorCredits.interface";
 export * from "@/shared/interfaces/actorInterfaces/actorDetails.interface";
 export * from "@/shared/interfaces/actorInterfaces/actorImages.interface";
 export * from "@/shared/interfaces/actorInterfaces/actorPages.interface";
-
-

@@ -46,5 +46,5 @@ const emits = defineEmits<{
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/components/navigationSection";
+@import "@/assets/sass/components/details/navigationSection";
 </style>

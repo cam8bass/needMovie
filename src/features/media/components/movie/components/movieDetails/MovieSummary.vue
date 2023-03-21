@@ -163,5 +163,5 @@ const router = useRouter();
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/components/summary";
+@import "@/assets/sass/components/details/summary";
 </style>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import HomeSearch from "@/features/media/components/home/components/homeSearch.vue";
 import HomeNav from "@/features/media/components/home/components/homeNav.vue";
-import HomeNews from "@/features/media/components/home/components/homeNews.vue";
+import HomeNews from "@/features/media/components/home/components/homeNews/homeNews.vue";
 import HomeTools from "@/features/media/components/home/components/homeTools.vue";
 import { useHomeStore } from "../../stores/homeStore";
 import TheLoading from "@/shared/components/TheLoading.vue";
@@ -12,6 +12,21 @@ const searchStore = useSearchStore();
 function updateSearch(inputValue: string) {
   searchStore.filter.search = inputValue;
   searchStore.fetchSearch();
+}
+
+function updateCinema(): void {
+  const page = homeStore.pages.homeCinemaPage++;
+  homeStore.fetchAllMoviesCinema(page);
+}
+
+function updateMovie(): void {
+  const page = homeStore.pages.homePopularMoviePage++;
+  homeStore.fetchPopularMovies(page);
+}
+
+function updateSerie(): void {
+  const page = homeStore.pages.homePopularSeriePage++;
+  homeStore.fetchPopularSeries(page);
 }
 </script>
 
@@ -26,9 +41,15 @@ function updateSearch(inputValue: string) {
     />
     <HomeNav />
     <HomeNews
-      :cinemaMovies="homeStore.cinema.results"
-      :popularMovies="homeStore.movie.popular.results"
-      :popularSeries="homeStore.serie.popular.results"
+      :cinemaMovies="homeStore.getCinema"
+      :popularMovies="homeStore.getMovie"
+      :popularSeries="homeStore.getSerie"
+      :totalResultsCinema="homeStore.cinema.total_results"
+      :totalResultsMovie="homeStore.movie.popular.total_results"
+      :totalResultsSerie="homeStore.serie.popular.total_results"
+      @incPageCinema="updateCinema"
+      @incPageMovie="updateMovie"
+      @incPageSerie="updateSerie"
     />
     <HomeTools />
     <div class="home__text">

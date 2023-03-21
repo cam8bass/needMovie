@@ -124,7 +124,7 @@ function toogleOpenlist(index: number) {
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/components/season";
+@import "@/assets/sass/components/serie/season";
 
 .hide {
   display: none;

@@ -13,7 +13,7 @@
 @use "@/assets/sass/abstracts/mixins" as m;
 @import "@/assets/sass/components/movie&serie/hero";
 .hero {
-  background-image: url("@/assets/images/background/background-hero-mob.png");
+  background-image: url("@/assets/images/background/background-movie-tab.png");
 
   @include m.md {
     background-image: url("@/assets/images/background/background-movie-tab.png");

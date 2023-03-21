@@ -156,7 +156,7 @@
     &-title {
       grid-column: 1/-1;
       justify-self: center;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: var(--textColor-2);
       font-family: var(--fontSubtitle);
       @include m.md {
@@ -166,6 +166,7 @@
     }
 
     &-overview {
+      font-weight: 300;
       @include m.md {
         grid-column: 2/-1;
       }

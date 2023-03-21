@@ -105,5 +105,5 @@ const openDetailSeason = ref<boolean>(false);
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/components/season";
+@import "@/assets/sass/components/serie/season";
 </style>

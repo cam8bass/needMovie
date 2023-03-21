@@ -124,12 +124,18 @@ function calcAge(birthYear: number, deathBirth?: number): number {
   padding: 4rem 0;
   min-height: 40rem;
   width: 100%;
+  margin-bottom: 2rem;
 
   @include m.md {
     grid-template-columns: minmax(min-content, 30rem) minmax(min-content, 80rem);
     grid-template-rows: min-content;
     column-gap: 6rem;
     padding: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  @include m.xl {
+    margin-bottom: 6rem;
   }
 
   &__btn {

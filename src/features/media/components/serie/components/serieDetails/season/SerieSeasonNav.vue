@@ -23,7 +23,7 @@ const emits = defineEmits<{
               : ''
           "
         >
-          Saison en cours
+          Dernière saison
         </button>
       </li>
       <li class="navigationSection__item">
@@ -42,5 +42,5 @@ const emits = defineEmits<{
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/components/navigationSection";
+@import "@/assets/sass/components/details/navigationSection";
 </style>

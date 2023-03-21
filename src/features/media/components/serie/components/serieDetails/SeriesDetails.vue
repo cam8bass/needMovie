@@ -125,7 +125,6 @@ watch(
     width: 100%;
   }
 
-  &__trailer {
-  }
+ 
 }
 </style>

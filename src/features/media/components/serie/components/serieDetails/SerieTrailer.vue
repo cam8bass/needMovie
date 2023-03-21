@@ -7,8 +7,8 @@ defineProps<{
 </script>
 
 <template>
-  <section class="sectionDetails" v-if="trailers.results.length">
-    <h2 class="sectionDetails__title">Bandes-annonces</h2>
+  <section class="sectionDetail" v-if="trailers.results.length">
+    <h2 class="sectionDetail__title">Bandes-annonces</h2>
     <ul class="landscapeList">
       <li
         v-for="trailer in trailers.results"
@@ -31,7 +31,7 @@ defineProps<{
 
 <style lang="scss" scoped>
 @use "@/assets/sass/abstracts/mixins" as m;
-@import "@/assets/sass/components/sectionDetails";
+@import "@/assets/sass/components/details/sectionDetail";
 @import "@/assets/sass/components/landscapeList";
 
 .trailer {

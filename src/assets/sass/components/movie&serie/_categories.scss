@@ -18,8 +18,12 @@
     &:not(:last-of-type) {
       margin-right: 2rem;
     }
-    @include m.md {
+
+    @include m.sm {
       font-size: 2rem;
+    }
+
+    @include m.md {
       &:not(:last-of-type) {
         margin-right: 4rem;
       }

@@ -48,19 +48,15 @@
 
 .tools {
   margin: 2rem 2rem;
-  width: 90vw; // a voir
+  width: 90vw;
   &__title {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     color: var(--textColor-2);
     font-family: var(--fontSubtitle);
     margin-bottom: 2rem;
 
     @include m.sm {
-      font-size: 2rem;
       margin-bottom: 2rem;
-    }
-    @include m.md {
-      font-size: 2.5rem;
     }
   }
 

@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("@/assets/images/background/background-hero-mob.png");
+
   width: 100%;
   background-position: center;
   background-size: cover;
@@ -14,12 +14,11 @@
   margin-bottom: 2rem;
   @include m.md {
     height: 40rem;
-    background-image: url("@/assets/images/background/background-movie-tab.png");
     margin-bottom: 4rem;
   }
 
   @include m.xl {
-    background-image: url("@/assets/images/background/background-movie-desk.png");
+
     margin-bottom: 6rem;
   }
 

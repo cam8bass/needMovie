@@ -2,3 +2,43 @@ RewriteEngin on
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.html [QSA,L]
+FallbackResource /index.html
+ErrorDocument 404 /index.html
+
+# Security
+# Désactiver l'exécution de scripts dans les fichiers téléchargés
+<FilesMatch "\.(pl|cgi|py|jsp|asp|php)$">
+    Header set X-Content-Type-Options "nosniff"
+</FilesMatch>
+
+# Bloquer l'accès aux fichiers sensibles
+<FilesMatch "(^\.htaccess|\.json|\.lock|composer\.lock|\.ini|\.env)">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+# Interdire l'accès aux dossiers système
+Options All -Indexes
+
+# Désactiver la liste de répertoire
+Options -Indexes
+
+# Empêcher l'affichage de la version de Apache
+ServerSignature Off
+
+# Performances
+# Activer la compression Gzip
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+</IfModule>
+
+# Activer la mise en cache des ressources statiques
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+</IfModule>

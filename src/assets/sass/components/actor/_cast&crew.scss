@@ -1,0 +1,44 @@
+@use "@/assets/sass/abstracts/mixins" as m;
+.cast {
+  width: 90vw;
+
+  &__item {
+    background-color: #fefefe;
+    padding: 1rem;
+    transition: background-color 0.2s;
+    &:nth-child(odd) {
+      background-color: #ececec;
+    }
+
+    &:hover,
+    &:active {
+      background-color: var(--backgroundColor-primary-1);
+    }
+  }
+
+
+
+  &__description {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 1.6rem;
+    color: var(--textColor-2);
+    font-family: var(--fontText);
+
+    &-item {
+      margin: 0.5rem;
+      padding-right: 0.5rem;
+      &:not(:last-child) {
+        border-right: 0.1px solid var(--textColor-1);
+      }
+    }
+
+    &-text {
+      display: block;
+      font-weight: 300;
+      @include m.sm {
+        display: inline;
+      }
+    }
+  }
+}

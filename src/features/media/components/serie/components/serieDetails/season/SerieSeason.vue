@@ -26,7 +26,7 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <div class="sectionDetails">
+  <div class="sectionDetail">
     <SerieSeasonNav
       :btnNavSeason="btnNavSeason"
       @update-navigation="updateSeasonNavigation"
@@ -54,6 +54,6 @@ const emits = defineEmits<{
 
 <style lang="scss" scoped>
 @use "@/assets/sass/abstracts/mixins" as m;
-@import "@/assets/sass/components/sectionDetails";
-@import "@/assets/sass/components/season";
+@import "@/assets/sass/components/details/sectionDetail";
+@import "@/assets/sass/components/serie/season";
 </style>

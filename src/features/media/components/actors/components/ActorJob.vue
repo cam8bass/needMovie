@@ -10,17 +10,13 @@ import type {
   ActorCreditsInterface,
 } from "@/shared/interfaces";
 
-defineProps<{
+const props = defineProps<{
   credits: ActorCreditsInterface;
   casts: ActorCreditsCastInterface[];
   crews: ActorCreditCrewInterface[];
 }>();
 
-const emits = defineEmits<{
-  (e: "incPageCast"): void;
-  (e: "incPageCrew"): void;
-}>();
-const btnNavJob = ref<navCredits>("cast");
+const btnNavJob = ref<navCredits>(props.casts.length ? "cast" : "crew");
 
 function updateJobNavigation(value: navCredits): void {
   btnNavJob.value = value;
@@ -38,15 +34,26 @@ function updateJobNavigation(value: navCredits): void {
       v-if="btnNavJob === 'cast'"
       :casts="casts"
       :credits="credits"
-      @incPageCast="emits('incPageCast')"
     />
     <ActorJobCrew
       v-if="btnNavJob === 'crew'"
       :credits="credits"
       :crews="crews"
-      @incPageCrew="emits('incPageCrew')"
     />
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use "@/assets/sass/abstracts/mixins" as m;
+.job {
+  margin: 2rem 0;
+
+  @include m.md {
+    margin: 4rem 0;
+  }
+
+  @include m.xl {
+    margin: 6rem 0;
+  }
+}
+</style>

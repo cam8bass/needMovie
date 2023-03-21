@@ -48,5 +48,5 @@ const emits = defineEmits<{
 <style lang="scss" scoped>
 @import "@/assets/sass/components/landscapeList";
 
-@import "@/assets/sass/components/actor";
+@import "@/assets/sass/components/details/actor";
 </style>

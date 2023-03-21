@@ -7,8 +7,8 @@ defineProps<{
 </script>
 
 <template>
-  <div class="sectionDetails">
-    <h3 class="sectionDetails__title">Images</h3>
+  <div class="sectionDetail">
+    <h3 class="sectionDetail__title">Images</h3>
     <ul class="landscapeList">
       <li
         class="landscapeList__item"
@@ -32,10 +32,8 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/components/sectionDetails";
+@import "@/assets/sass/components/details/sectionDetail";
 
 @import "@/assets/sass/components/landscapeList";
-@import "@/assets/sass/components/wallpaper";
-
-
+@import "@/assets/sass/components/details/wallpaper";
 </style>

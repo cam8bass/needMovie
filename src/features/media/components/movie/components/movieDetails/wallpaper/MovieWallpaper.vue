@@ -31,7 +31,7 @@ function updateWallpaperNavigation(value: navWallpaper): void {
 </script>
 
 <template>
-  <div class="sectionDetails">
+  <div class="sectionDetail">
     <MovieWallpaperNav
       :btnNavWallpaper="btnNavWallpaper"
       :wallpapers="wallpappers"
@@ -53,5 +53,5 @@ function updateWallpaperNavigation(value: navWallpaper): void {
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/components/sectionDetails";
+@import "@/assets/sass/components/details/sectionDetail";
 </style>

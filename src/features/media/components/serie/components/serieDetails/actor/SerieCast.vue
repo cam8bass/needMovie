@@ -30,8 +30,8 @@ const emits = defineEmits<{
           alt="icon no picture"
           class="actor__img"
         />
-        <span class="landscapeList__name">{{ cast.name }}</span>
-        <span class="landscapeList__job">{{ cast.roles[0].character }}</span>
+        <span class="landscapeList__name"> {{ cast.name }}</span>
+        <span class="landscapeList__job">Rôle: {{ cast.roles[0].character }}</span>
       </RouterLink>
     </li>
     <li class="landscapeList__item">
@@ -49,5 +49,5 @@ const emits = defineEmits<{
 <style lang="scss" scoped>
 @import "@/assets/sass/components/landscapeList";
 
-@import "@/assets/sass/components/actor";
+@import "@/assets/sass/components/details/actor";
 </style>

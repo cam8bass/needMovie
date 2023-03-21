@@ -10,7 +10,7 @@ import type {
 import type { navCredits } from "@/shared/types";
 import { ref } from "vue";
 
-defineProps<{
+const props = defineProps<{
   crews: SerieCrewInterface[];
   casts: SerieCastInterface[];
   credits: SerieCreditsInterface;
@@ -23,7 +23,7 @@ const emits = defineEmits<{
   (e: "getCrew"): void;
 }>();
 
-const btnNavCredits = ref<navCredits>("cast");
+const btnNavCredits = ref<navCredits>(props.casts ? "cast" : "crew");
 
 function updateNavigation(value: navCredits): void {
   btnNavCredits.value = value;
@@ -31,7 +31,7 @@ function updateNavigation(value: navCredits): void {
 </script>
 
 <template>
-  <div class="sectionDetails">
+  <div class="sectionDetail">
     <SerieActorNav
       :btnNavCredits="btnNavCredits"
       :credits="credits"
@@ -53,5 +53,5 @@ function updateNavigation(value: navCredits): void {
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/components/sectionDetails";
+@import "@/assets/sass/components/details/sectionDetail";
 </style>

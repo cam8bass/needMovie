@@ -9,7 +9,6 @@ import {
 } from "@/shared/interfaces";
 import { fetchActorInformation } from "@/shared/services";
 import { defineStore } from "pinia";
-import { ref } from "vue";
 
 interface ActorDetailStore {
   details: ActorDetailsInterface | null;
@@ -30,37 +29,27 @@ export const useActorDetailStore = defineStore("actorDetailStore", {
     errors: null,
   }),
   getters: {
-    getActorCast:
-      (state: ActorDetailStore) =>
-      (page: number): ActorCreditsCastInterface[] => {
-        const castPerPage: number = 10;
-        const startIndex = ref<number>((page - 1) * castPerPage);
-        const endIndex = ref<number>(startIndex.value + castPerPage);
-        const slicedcast = ref<ActorCreditsCastInterface[]>(
-          state.credits!.cast.slice(startIndex.value, endIndex.value)
-        );
-        if (page > 1) {
-          return [...state.credits!.cast.slice(0, endIndex.value)];
-        } else {
-          return slicedcast.value;
-        }
-      },
+    getActorCast(): ActorCreditsCastInterface[] {
+      return this.credits!.cast.sort((a, b) => {
+        if (a.release_date > b.release_date) {
+          return 1;
+        } else if (a.release_date < b.release_date) {
+          return -1;
+        } else return 0;
+      }) as ActorCreditsCastInterface[];
+    },
 
-    getActorCrew:
-      (state: ActorDetailStore) =>
-      (page: number): ActorCreditCrewInterface[] => {
-        const crewPerPage: number = 10;
-        const startIndex = ref<number>((page - 1) * crewPerPage);
-        const endIndex = ref<number>(startIndex.value + crewPerPage);
-        const slicedcrew = ref<ActorCreditCrewInterface[]>(
-          state.credits!.crew.slice(startIndex.value, endIndex.value)
-        );
-        if (page > 1) {
-          return [...state.credits!.crew.slice(0, endIndex.value)];
+    getActorCrew(): ActorCreditCrewInterface[] {
+      return this.credits!.crew.sort((a, b) => {
+        if (a.release_date > b.release_date) {
+          return 1;
+        } else if (a.release_date < b.release_date) {
+          return -1;
         } else {
-          return slicedcrew.value;
+          return 0;
         }
-      },
+      }) as ActorCreditCrewInterface[];
+    },
   },
   actions: {
     async fetchActorDetail(idActor: string) {

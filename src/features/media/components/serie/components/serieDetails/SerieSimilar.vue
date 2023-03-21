@@ -7,8 +7,8 @@ defineProps<{
 </script>
 
 <template>
-  <div class="sectionDetails" v-if="similars.results.length">
-    <h5 class="sectionDetails__title">Recommandations</h5>
+  <div class="sectionDetail" v-if="similars.results.length">
+    <h5 class="sectionDetail__title">Recommandations</h5>
     <ul class="landscapeList">
       <li
         v-for="similar of similars.results"
@@ -36,7 +36,7 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/components/sectionDetails";
+@import "@/assets/sass/components/details/sectionDetail";
 @import "@/assets/sass/components/landscapeList";
-@import "@/assets/sass/components/similar";
+@import "@/assets/sass/components/details/similar";
 </style>

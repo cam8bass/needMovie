@@ -11,20 +11,12 @@ import type {
 
 const actorDetailStore = useActorDetailStore();
 
-function getActorCast(page: number): ActorCreditsCastInterface[] {
-  return actorDetailStore.getActorCast(page);
+function getActorCast(): ActorCreditsCastInterface[] {
+  return actorDetailStore.getActorCast;
 }
 
-function getActorCrew(page: number): ActorCreditCrewInterface[] {
-  return actorDetailStore.getActorCrew(page);
-}
-
-function incPageCast(): void {
-  actorDetailStore.pages.pageCast++;
-}
-
-function incPageCrew(): void {
-  actorDetailStore.pages.pageCrew++;
+function getActorCrew(): ActorCreditCrewInterface[] {
+  return actorDetailStore.getActorCrew;
 }
 </script>
 
@@ -38,10 +30,8 @@ function incPageCrew(): void {
     />
     <ActorJob
       :credits="actorDetailStore.credits!"
-      @incPageCast="incPageCast"
-      @incPageCrew="incPageCrew"
-      :casts="getActorCast(actorDetailStore.pages.pageCast)"
-      :crews="getActorCrew(actorDetailStore.pages.pageCrew)"
+      :casts="getActorCast()"
+      :crews="getActorCrew()"
     />
   </div>
 </template>

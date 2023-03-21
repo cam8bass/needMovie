@@ -11,7 +11,7 @@ import type {
 import type { navWallpaper } from "@/shared/types";
 import { ref } from "vue";
 
-defineProps<{
+const props = defineProps<{
   backdrops: WallpapperBackdropsInterface[];
   posters: WallpapperPostersInterface[];
   wallpapers: WallpapperInterface;
@@ -22,14 +22,16 @@ const emits = defineEmits<{
   (e: "incPagePoster"): void;
 }>();
 
-const btnNavWallpaper = ref<navWallpaper>("backdrops");
+const btnNavWallpaper = ref<navWallpaper>(
+  props.backdrops.length ? "backdrops" : "posters"
+);
 function updateWallpaperNavigation(value: navWallpaper): void {
   btnNavWallpaper.value = value;
 }
 </script>
 
 <template>
-  <div class="sectionDetails">
+  <div class="sectionDetail">
     <SerieWallpaperNav
       :btnNavWallpaper="btnNavWallpaper"
       :wallpapers="wallpapers"
@@ -51,5 +53,5 @@ function updateWallpaperNavigation(value: navWallpaper): void {
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/components/sectionDetails";
+@import "@/assets/sass/components/details/sectionDetail";
 </style>
